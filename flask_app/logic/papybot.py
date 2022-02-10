@@ -3,7 +3,6 @@ import logging
 import re
 from random import choice
 from typing import List
-import logging
 
 from deep_translator import GoogleTranslator  # pipenv install deep_translator
 
@@ -17,8 +16,6 @@ from ..constants import (
     FRENCH,
     LOCATION_WORDS,
     STOP_WORDS,
-    URL_SUGGESTED_ITEMS_FROM_WIKIPEDIA,
-    URL_ITEM_INFO_FROM_WIKIPEDIA,
     WORDS_OF_COURTESY,
 )
 
@@ -37,10 +34,11 @@ from ..external_apis.wikipedia import Wikipedia
 # set logging level
 logging.basicConfig(level=os.environ.get("LOGLEVEL", logging_level))
 
+
 class PapyBot:
     @classmethod
     def check_response_validity_of_geoloc(
-        cls, question, location_title, full_address, city
+            cls, question, location_title, full_address, city
     ):
         full_address_preformated = remove_some_words_and_format_text(
             full_address, ["kjis552aCfd"]
@@ -329,11 +327,12 @@ class PapyBot:
             )
 
         except Exception as e:
+            logging.debug(str(e))
             location_title = None
 
         if not location_title:
             message_from_papy = (
-                f"""
+                """
             Malheureusement, je n'ai pas d'info à ce sujet.<br />
             M'as tu indiqué le nom de la ville ?<br />
             Par exemple: Où est la gare routière de Montpellier ?<br />
@@ -408,12 +407,13 @@ class PapyBot:
             f"{wiki_of_initial_question}"
         )
         logging.debug("")
-        logging.debug("street_n_city (arg of: get_info_from_wikipedia): "
+        logging.debug(
+            "street_n_city (arg of: get_info_from_wikipedia): "
             f"{street_n_city}"
         )
-        wiki_about_the_street_that_has_been_found = cls.get_info_from_wikipedia(
-            street_n_city
-        )
+        wiki_about_the_street_that_has_been_found = (
+            cls.get_info_from_wikipedia(street_n_city))
+
         logging.debug(
             "wiki_about_the_street_that_has_been_found = "
             "cls.get_info_from_wikipedia(street_n_city): "
@@ -441,8 +441,8 @@ class PapyBot:
         # Inserting << wiki_about_the_street_that_has_been_found >> in papy's response
         if (
             wiki_about_the_street_that_has_been_found
-            and wiki_about_the_street_that_has_been_found
-            not in wiki_of_initial_question
+            and wiki_about_the_street_that_has_been_found not in
+            wiki_of_initial_question
         ):
             message_from_papy += (
                 "<end_of_bubble />J'ai bien envie de te parler de ceci :<br/>"

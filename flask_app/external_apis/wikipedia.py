@@ -1,5 +1,3 @@
-from datetime import datetime
-
 import requests
 
 from ..constants import (
@@ -25,5 +23,9 @@ class Wikipedia:
             item_info_from_wikipedia = requests.get(
                 URL_ITEM_INFO_FROM_WIKIPEDIA + title_of_wikipedia_page
             ).json()
-            return item_info_from_wikipedia["query"]["pages"][str(page_id)]["extract"]
+            return (
+                item_info_from_wikipedia["query"]
+                ["pages"]
+                [str(page_id)]
+                ["extract"])
         return None

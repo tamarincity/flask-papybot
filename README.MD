@@ -14,8 +14,21 @@ env.py:
 app_id = "<your app id>"
 api_key = "<your api key>"
 ```
+## Installing pipenv the virtual environment via Pipx
 
-## Activating the virtual environment (pipenv)
+Pipx is a tool to help you install and run end-user applications written in Python. 
+It installs applications into an isolated and clean environment on their own.
+Once you have pipx ready on your system, continue to install Pipenv. 
+
+(https://pipenv.pypa.io/en/latest/install/)
+
+```shell
+pip install --user pipx
+pipx install pipenv
+```
+
+
+## Activating the virtual environment
 
 ```shell
 pipenv shell
@@ -71,7 +84,7 @@ pipenv install pytest-cov
 ### Configuring files for the coverage to bypass
 
 I created a file named **.coveragerc** at the root of the project.
-This file contains the files and documentary to bypass and more.
+This file contains the files and directories to bypass and more.
 
 
 ## Running coverage

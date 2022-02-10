@@ -42,6 +42,7 @@ htmlcov/
 .tox/
 .nox/
 .coverage
+.coveragerc
 .coverage.*
 .cache
 nosetests.xml
@@ -138,6 +139,9 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# flake8 configuration
+.flake8
 
 # Personal files to ignore
 zzz*

@@ -497,12 +497,20 @@ STOP_WORDS = [
 ]
 
 URL_GEOLOCATION_API = "https://places.ls.hereapi.com/places/v1/autosuggest/?"
-URL_GET_CITY_GEOLOC_API = "https://geocoder.ls.hereapi.com/6.2/geocode.json?&city="
+URL_GET_CITY_GEOLOC_API = (
+    "https://geocoder.ls.hereapi.com/6.2/geocode.json?&city=")
+
 URL_GET_INTERESTING_POINTS_AROUND = (
-    "https://places.sit.ls.hereapi.com/places/v1/discover/around?lang=fr-fr&pretty&at="
-)
-URL_SUGGESTED_ITEMS_FROM_WIKIPEDIA = "https://fr.wikipedia.org/w/api.php?action=query&list=search&inprop=url&utf8=&format=json&origin=*&srlimit=3&srsearch="
-URL_ITEM_INFO_FROM_WIKIPEDIA = "https://fr.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=1&titles="
+    "https://places.sit.ls.hereapi.com/places/v1/discover/"
+    "around?lang=fr-fr&pretty&at=")
+
+URL_SUGGESTED_ITEMS_FROM_WIKIPEDIA = (
+    "https://fr.wikipedia.org/w/api.php?action=query&list=search"
+    "&inprop=url&utf8=&format=json&origin=*&srlimit=3&srsearch=")
+
+URL_ITEM_INFO_FROM_WIKIPEDIA = (
+    "https://fr.wikipedia.org/w/api.php?action=query"
+    "&prop=extracts&format=json&exintro=1&titles=")
 
 WORDS_OF_COURTESY = [
     "s'il te plait",

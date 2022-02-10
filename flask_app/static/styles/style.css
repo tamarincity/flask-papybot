@@ -1,12 +1,12 @@
 .header{
     height: 20vh;
     width: 100%;
-    flex-wrap: nowrap important;
+    flex-wrap: nowrap;
 }
 
 .band{
     max-height: 20vh;
-    flex-wrap: nowrap important;
+    flex-wrap: nowrap;
 }
 
 .loader{
@@ -28,7 +28,7 @@
 }
 
 .chat{
-    background-color: aquamarine;
+    background-color: rgb(48, 47, 47);
     height: 65vh;
     width: 100%;
     overflow-y: scroll;
@@ -42,7 +42,7 @@
 }
 
 .user-message>.txt{
-    background-color: rgb(235, 152, 57);
+    background-color: rgb(224, 170, 108);
     border-radius: 10px;
     max-width: 75%;
     margin-right: auto;
@@ -58,7 +58,7 @@
 }
 
 .papy-message>.txt{
-    background-color: rgb(214, 144, 247);
+    background-color: rgb(144, 214, 247);
     border-radius: 10px;
     max-width: 90%;
     margin-left: auto;
@@ -70,4 +70,8 @@
 
 input{
     width: 100vw;
+}
+
+.papybot-img{
+    height:150px;
 }

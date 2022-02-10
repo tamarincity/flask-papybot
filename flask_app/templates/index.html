@@ -34,14 +34,14 @@
               <img
                 src="static/img/papybot.jpg"
                 alt="Image de paybot, un robot vieillard avec une canne"
-                height="150px"
+                class="papybot-img"
               />
             </div>
             <div>
-              <h2>
+              <h3>
                 Salut mon petiiiiit, <span class="color-red">je suis PapyBot !</span><br />Demande-moi où se situe un lieu et je
                 t'en dirai plus encore. 😁
-              </h2>
+              </h3>
             </div>
           </div>
         </nav>
@@ -59,7 +59,6 @@
             class="form-control"
             placeholder="Demande un lieu ici"
             aria-label="Search"
-            aria-describedby="addon-wrapping"
           />
           <button id="button" class="btn btn-outline-success" onclick="askPapy()">
             Demander
@@ -70,10 +69,22 @@
       <div class="footer">
         <p>
           Pascal MAITREL
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-            href="#"
-            >github</a
-          >
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://github.com/tamarincity/flask-papybot"
+            target="_blank">
+            github</a>
+          <br/><br/>
+          <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+            alt="CSS Valide !" />
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:88px;height:31px"
+                src="http://jigsaw.w3.org/css-validator/images/vcss"
+                alt="CSS Valide !" />
+        </a>
         </p>
       </div>
     </div>
@@ -92,6 +103,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script type="text/javascript" src="static/scripts/logic.js"></script>
+    <script src="static/scripts/logic.js"></script>
   </body>
 </html>
