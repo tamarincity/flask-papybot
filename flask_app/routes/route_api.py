@@ -1,8 +1,8 @@
-from turtle import clear
 from flask import request, jsonify  # jsonify: To render json (API REST)
 
 
 from ..logic.papybot import PapyBot
+
 
 def routes_api(app):
     """
@@ -11,11 +11,9 @@ def routes_api(app):
 
     @app.route("/api", methods=["GET"])
     def papybot():
-        question = request.args.get('question')
+        question = request.args.get("question")
         if not question:
-            return (
-                jsonify({"message": "Il faut me poser une question"}),
-                400)
+            return (jsonify({"message": "Il faut me poser une question"}), 400)
 
         response_from_papybot, status = PapyBot.start(question)
 

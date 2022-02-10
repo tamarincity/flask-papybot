@@ -14,15 +14,12 @@ from env import (
 url_api_key = f"&apiKey={api_key}"
 url_app_id = f"&app_id={app_id}"
 
-class GeolocApi:
 
+class GeolocApi:
     @classmethod
     def check_if_city_exists(cls, city):
         if city:
-            return requests.get(
-                URL_GET_CITY_GEOLOC_API
-                + city
-                + url_api_key).json()
+            return requests.get(URL_GET_CITY_GEOLOC_API + city + url_api_key).json()
         else:
             return None
 
@@ -37,10 +34,11 @@ class GeolocApi:
     def get_interesting_points_around(cls, latitude, longitude):
         try:
             response = requests.get(
-                    URL_GET_INTERESTING_POINTS_AROUND
-                    + f"{latitude},{longitude}"
-                    + url_api_key
-                    + url_app_id).json()["results"]["items"]
+                URL_GET_INTERESTING_POINTS_AROUND
+                + f"{latitude},{longitude}"
+                + url_api_key
+                + url_app_id
+            ).json()["results"]["items"]
             return response
         except Exception as e:
             return str(e)

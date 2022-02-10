@@ -11,6 +11,8 @@ pytest-cov = "==3.0.0"
 pytest-flask = "==1.2.0"
 requests = "==2.27.1"
 Flask = "==2.0.1"
+flake8 = "*"
+black = "*"
 
 [dev-packages]
 

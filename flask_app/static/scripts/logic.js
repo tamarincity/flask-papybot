@@ -42,7 +42,6 @@ let askPapy = async () => {
     userMessage += "</div></div>";
     chat.innerHTML += userMessage;
     $(".loader").show();
-    // const res = await fetch(`${urlLocal}/api?question=${question}`);
     const res = await fetch(`api?question=${question}`);
     const resAsJson = await res.json();
     $(".loader").hide();

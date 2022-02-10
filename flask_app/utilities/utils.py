@@ -1,16 +1,19 @@
 from typing import List
 import unicodedata
 import re
+import logging
 
 
 def remove_accents(text_to_format):
-   return ''.join(
-       char for char in unicodedata.normalize('NFD', text_to_format)
-                  if unicodedata.category(char) != 'Mn')
+    return "".join(
+        char
+        for char in unicodedata.normalize("NFD", text_to_format)
+        if unicodedata.category(char) != "Mn"
+    )
 
 
 def remove_punctuation(text_to_format):
-    return re.sub(r'[^\w\s]', '', text_to_format)
+    return re.sub(r"[^\w\s]", "", text_to_format)
 
 
 def remove_some_words_and_format_text(text_to_format, words_to_remove: List[str]):
@@ -20,13 +23,10 @@ def remove_some_words_and_format_text(text_to_format, words_to_remove: List[str]
     text_to_format = text_to_format.lower() if text_to_format else ""
 
     # save appostrophy and replace minus sign by space
-    text_to_format = (
-        text_to_format.replace("'", "75dhzkgf85h")
-        .replace("-", " "))
-        
+    text_to_format = text_to_format.replace("'", "75dhzkgf85h").replace("-", " ")
+
     # save " à " because it can help to determine the city
-    text_to_format = (
-        text_to_format.replace(" à ", "75dhdhfk753f85h"))
+    text_to_format = text_to_format.replace(" à ", "75dhdhfk753f85h")
 
     text_to_format = remove_accents(text_to_format)
     text_to_format = remove_punctuation(text_to_format)
@@ -54,9 +54,10 @@ def extract_question_from_text(text_to_format, STOP_WORDS: List[str]):
             return text_to_format.split(word)[1].strip()
     return None
 
+
 def extract_city_from_question(question):
     """
-    Extract the city from the question if 
+    Extract the city from the question if
     "ville de " is in the question.
 
     Args:
@@ -67,9 +68,16 @@ def extract_city_from_question(question):
     """
 
     city_stop_words = [
-        " de la ville de ", " de la ville d'", " de la ville ", "ville de ",
-        "ville d'", " ville:", " ville :", " ville "]
-    
+        " de la ville de ",
+        " de la ville d'",
+        " de la ville ",
+        "ville de ",
+        "ville d'",
+        " ville:",
+        " ville :",
+        " ville ",
+    ]
+
     for stop_word in city_stop_words:
         if stop_word in question:
             elements_of_question = question.split(stop_word)
@@ -103,12 +111,12 @@ def figure_out_city(question):
         elements_of_question = question.split(" a ")
         question1 = elements_of_question[0].strip()
         city1 = elements_of_question[-1].strip()
-        
+
     if " de " in question:
         elements_of_question = question.split(" de ")
         question2 = elements_of_question[0].strip()
         city2 = elements_of_question[-1].strip()
-        
+
     elif " d'" in question:
         elements_of_question = question.split(" d'")
         question2 = elements_of_question[0].strip()
@@ -120,8 +128,8 @@ def figure_out_city(question):
 def extract_name_out_of_street(street, LOCATION_WORDS):
     try:
         for word in LOCATION_WORDS:
-            street = street.replace(word, '').replace(word.title(), '')
+            street = street.replace(word, "").replace(word.title(), "")
 
     except Exception as e:
-        print(str(e))
+        logging.exception(str(e))
     return street.strip()
