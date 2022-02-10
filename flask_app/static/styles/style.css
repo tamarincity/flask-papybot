@@ -1,0 +1,73 @@
+.header{
+    height: 20vh;
+    width: 100%;
+    flex-wrap: nowrap important;
+}
+
+.band{
+    max-height: 20vh;
+    flex-wrap: nowrap important;
+}
+
+.loader{
+    position: fixed;
+    left: calc(50% - 75px);
+    top: calc(50% - 75px);
+    width: 150px;
+    height: 150px;
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent;
+}
+
+.color-red{
+    color: maroon;
+}
+
+.chat{
+    background-color: aquamarine;
+    height: 65vh;
+    width: 100%;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+.user-message{
+    display: flex;
+    justify-content:flex-end;
+    margin-right:auto;
+}
+
+.user-message>.txt{
+    background-color: rgb(235, 152, 57);
+    border-radius: 10px;
+    max-width: 75%;
+    margin-right: auto;
+    margin-top: 5px;
+    text-align: left;
+    padding:5px;
+}
+
+.papy-message{
+    display: flex;
+    justify-content:flex-end;
+    margin-right:auto;
+}
+
+.papy-message>.txt{
+    background-color: rgb(214, 144, 247);
+    border-radius: 10px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-top: 5px;
+    text-align: left;
+    padding:5px;
+    overflow-x: scroll;
+}
+
+input{
+    width: 100vw;
+}

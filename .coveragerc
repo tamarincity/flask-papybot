@@ -1,0 +1,17 @@
+# this file is used to configure the file that test the coverage
+[run]
+# source = . means start from here
+source = .
+# omit = is for file to omit the coverage
+omit =
+    flask_app/static/*
+    */templates/*
+    *config.py
+    flask_app/constants.py
+    */flask_app.py
+    app.py
+    app_debug_mode.py
+    app_gunicorn.py
+    env.py
+    .env
+    zzz.py
