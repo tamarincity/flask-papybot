@@ -5,7 +5,7 @@ Ask PapyBot where a place is located, then he will answer you and give you more 
 ## Prerequisites
 
 - Python 3.9.10
-- Create a account at  to get your credentials
+- Create an account at https://developer.here.com/ to get your credentials to use the geolocation API.
 - At the root of the project, create a env.py file and fill it with your "here.com" credentials
 
 env.py:
@@ -19,7 +19,6 @@ api_key = "<your api key>"
 Pipx is a tool to help you install and run end-user applications written in Python. 
 It installs applications into an isolated and clean environment on their own.
 Once you have pipx ready on your system, continue to install Pipenv. 
-
 (https://pipenv.pypa.io/en/latest/install/)
 
 ```shell
