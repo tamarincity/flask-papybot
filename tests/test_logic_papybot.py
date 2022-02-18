@@ -1,7 +1,5 @@
-# flask_app/controller/papybot.py
+# flask_app/logic/papybot.py
 # test of all  methods of class PapyBot except the << start >> method
-
-import pytest
 
 from flask_app.logic import papybot
 
@@ -369,7 +367,7 @@ def test_html_version_of_one_interesting_point():
 
     assert Sut.html_version_of_one_interesting_point(interesting_points_list) == expected
 
-# @pytest.mark.skip
+
 def test_turn_interesting_points_into_html_version(monkeypatch):
     print("=> Return ...")
     Sut = PapyBot  # class PapyBot

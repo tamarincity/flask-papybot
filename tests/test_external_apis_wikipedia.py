@@ -1,4 +1,4 @@
-# flask_app/apis/wikipedia.py
+# flask_app/external_apis/wikipedia.py
 # test of all  methods of class Wikipedia
 
 from flask_app.external_apis.wikipedia import Wikipedia

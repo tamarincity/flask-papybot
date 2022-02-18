@@ -1,4 +1,4 @@
-# flask_app/apis/geoloc_api.py
+# flask_app/external_apis/geoloc_api.py
 # test of all  methods of class GeolocApi
 
 from flask_app.constants import (

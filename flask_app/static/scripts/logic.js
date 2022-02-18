@@ -14,12 +14,12 @@ input.addEventListener("keyup", (event) => {
   }
 })
 
-// Au départ je disable le bouton "Demander"
+// At first I disable the button "Demander"
 $("button").prop("disabled", true);
 
-// Disabled du bouton si input vide:
+// Disabled of button if input is empty:
 $("input").on("input", () => {
-  // On sélectionne input puis s'il y a un input (changement de l'input) alors
+  // Select input and if there is an input (change of input) then
 
   // Below, the disabled attribute of the button has the inverse value
   // of the input content.

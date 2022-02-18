@@ -1,4 +1,4 @@
-# flask_app/controller/papybot.py
+# flask_app/logic/papybot.py
 # test the start method of the class PapyBot
 
 import pytest

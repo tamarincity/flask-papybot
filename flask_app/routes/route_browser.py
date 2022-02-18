@@ -22,7 +22,6 @@ def routes_browser(app):
             if not message:
                 return (
                     jsonify({"error": "No << message >> key found in the request"}),
-                    400,
-                )
+                    400)
 
             return jsonify({"message": f"Your message is {message}"}), 200
