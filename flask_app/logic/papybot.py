@@ -235,7 +235,7 @@ class PapyBot:
             """<end_of_bubble />Pour finir, voici la carte du lieu qui """
             """t'intéresse:<br /><img src="https://image.maps.ls.hereapi.com"""
             f"""/mia/1.6/mapview?apiKey={api_key}&"""
-            f"""z=17&w=1000&h=700&c={latitude},{longitude}" />""")
+            f"""z=16.4&w=800&h=650&c={latitude},{longitude}" />""")
 
     @classmethod
     def start(cls, question: str) -> tuple:

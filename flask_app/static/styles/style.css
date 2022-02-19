@@ -1,11 +1,11 @@
 .header{
-    height: 20vh;
+    height: 24vh;
     width: 100%;
     flex-wrap: nowrap;
 }
 
 .band{
-    max-height: 20vh;
+    max-height: 24vh;
     flex-wrap: nowrap;
 }
 
@@ -73,5 +73,5 @@ input{
 }
 
 .papybot-img{
-    height:150px;
+    height:20vh;
 }
