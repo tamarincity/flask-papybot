@@ -5,6 +5,18 @@ import logging
 
 
 def remove_accents(text_to_format):
+    try:
+        if not (
+                text_to_format
+                and isinstance(text_to_format, str)
+        ):
+
+            raise Exception(
+                "Error! remove_accents(): arg is wrong or None")
+    except Exception as e:
+        logging.error(str(e))
+        return ""
+
     return "".join(
         char
         for char in unicodedata.normalize("NFD", text_to_format)
@@ -13,13 +25,39 @@ def remove_accents(text_to_format):
 
 
 def remove_punctuation(text_to_format):
+    try:
+        if not (
+                text_to_format
+                and isinstance(text_to_format, str)
+        ):
+
+            raise Exception(
+                "Error! remove_punctuation(): arg is wrong or None")
+    except Exception as e:
+        logging.error(str(e))
+        return ""
+
     return re.sub(r"[^\w\s]", "", text_to_format)
 
 
-def remove_some_words_and_format_text(text_to_format, words_to_remove: List[str]):
+def remove_some_words_and_format_text(
+    text_to_format: str, words_to_remove: List[str]):
     """
     Remove words from the given text and format the text
     """
+    try:
+        if not (
+                text_to_format
+                and words_to_remove
+                and isinstance(text_to_format, str)
+                and isinstance(words_to_remove, list)
+        ):
+            raise Exception(
+                "Error! remove_some_words_and_format_text(): args are wrong or None")
+    except Exception as e:
+        logging.error(str(e))
+        return ""
+
     text_to_format = text_to_format.lower() if text_to_format else ""
 
     # save appostrophy and replace minus sign by space
@@ -48,7 +86,15 @@ def remove_some_words_and_format_text(text_to_format, words_to_remove: List[str]
     return text_to_format
 
 
-def extract_question_from_text(text_to_format, STOP_WORDS: List[str]):
+def extract_question_from_text(text_to_format: str, STOP_WORDS: List[str]):
+    if not (
+            text_to_format
+            and STOP_WORDS
+            and isinstance(text_to_format, str)
+            and isinstance(STOP_WORDS, list)
+    ):
+        return None
+    
     for word in STOP_WORDS:
         if word in text_to_format:
             return text_to_format.split(word)[1].strip()
@@ -66,6 +112,9 @@ def extract_city_from_question(question):
     Returns:
         tuple: question: string, city: string
     """
+
+    if not (question and isinstance(question, str)):
+        return ("", None)
 
     city_stop_words = [
         " de la ville de ",
@@ -97,6 +146,10 @@ def figure_out_city(question):
     Returns:
         tuple: questions_without_city: [string], possible_cities: [string]
     """
+
+    if not (question and isinstance(question, str)):
+        return ["", ""], ["", ""]
+
     question1 = ""
     question2 = ""
     city1 = ""
@@ -126,6 +179,13 @@ def figure_out_city(question):
 
 
 def extract_name_out_of_street(street, LOCATION_WORDS):
+    if not (
+            street
+            and LOCATION_WORDS
+            and isinstance(street, str)
+            and isinstance(LOCATION_WORDS, list)):
+
+        return ""
     try:
         for word in LOCATION_WORDS:
             street = street.replace(word, "").replace(word.title(), "")

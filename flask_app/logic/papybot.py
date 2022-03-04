@@ -243,6 +243,14 @@ class PapyBot:
         # 1 Get question =====================================================
         # ====================================================================
         logging.debug(f"question from front: {question}")
+        if not (
+                question
+                and isinstance(question, str)):
+
+            logging.debug(f"No question or question is not a string!")
+            message_from_papy = "Merci de reformuler la question."
+            return message_from_papy, 400
+
         message_from_papy = ""
         text_to_format = question
 
@@ -258,10 +266,6 @@ class PapyBot:
         logging.debug(
             "question (extract_question_from_text(formated_text, STOP_WORDS)): "
             f"{question}")
-
-        if not question:
-            message_from_papy = "Merci de reformuler la question."
-            return message_from_papy, 400
 
         question, city = extract_city_from_question(question)
         logging.debug(
