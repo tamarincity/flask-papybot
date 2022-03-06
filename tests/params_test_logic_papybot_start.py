@@ -37,10 +37,10 @@ returns_from_function_extract_city_from_question = (
 
 
 returns_from_function_figure_out_city = (
-    None,
-    None,
-    None,
-    None,
+    (["", ""], ["", ""]),
+    (["", ""], ["", ""]),
+    (["", ""], ["", ""]),
+    (["", ""], ["", ""]),
     (['', 'theatre'] ,  ['', 'beziers']),
 )
 

@@ -3,6 +3,7 @@ const url = ""
 
 let chat = document.querySelector(".chat");
 let input = document.getElementById("input");
+let button = document.getElementById("button");
 
 // Detect when the Enter key is pressed
 input.addEventListener("keyup", (event) => {
@@ -10,7 +11,7 @@ input.addEventListener("keyup", (event) => {
       // Cancel the default action, if needed
       event.preventDefault();
       // Trigger the button element with a click
-      document.getElementById("button").click();
+      button.click();
   }
 })
 

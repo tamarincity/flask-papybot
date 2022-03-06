@@ -113,8 +113,8 @@ def extract_city_from_question(question):
         tuple: question: string, city: string
     """
 
-    if not (question and isinstance(question, str)):
-        return ("", None)
+    # if not (question and isinstance(question, str)):
+    #     return ("", None)
 
     city_stop_words = [
         " de la ville de ",

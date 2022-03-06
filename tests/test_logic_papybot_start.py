@@ -58,6 +58,11 @@ def test_start(
         return return_from_function_extract_city_from_question
 
     def mock_figure_out_city(question):
+        if not (question and isinstance(question, str)):
+            raise Exception(
+                "Error in args of figure_out_city() "
+                "Maybe question is missing. Question must be a non-empty string"
+            )
         return return_from_function_figure_out_city
 
     def mock_check_if_city_exists(city):

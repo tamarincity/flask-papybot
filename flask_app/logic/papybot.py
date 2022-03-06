@@ -36,46 +36,58 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", logging_level))
 
 
 class PapyBot:
+    truc = ("Je suis le truc")
     @classmethod
     def check_response_validity_of_geoloc(
             cls, question, location_title, full_address, city):
-
-        full_address_preformated = remove_some_words_and_format_text(
-            full_address, ["kjis552aCfd"])
-
-        formated_full_address = (
-            full_address_preformated.replace("st ", "saint ")
-            .replace("ste ", "sainte ")
-            .replace("-", " "))
-
-        location_title_preformated = remove_some_words_and_format_text(
-            location_title, ["kjis552aCfd"])
-
-        formated_location_title = (
-            location_title_preformated.replace("st ", "saint ")
-            .replace("ste ", "sainte ")
-            .replace("-", " "))
-
-        question = (
-            question.replace("st ", "saint ")
-            .replace("ste ", "sainte ")
-            .replace("%20", " "))
-
-        question = question.replace(f" de {city}", "").replace(f" à {city}", "")
-        question = question.replace(city, "") if city else question
-        question = question.strip()
-
-        all_words_of_question: List = question.split(" ")
-        for word in all_words_of_question:
-            if word not in formated_location_title:
+        try:
+            if not (
+                    question
+                    and isinstance(question, str)
+            ):
+                # raise Exception(
+                #     "Error in the args of method: check_response_validity_of_geoloc")
                 return None
-        if city:
-            if city in formated_full_address:
-                return location_title
+
+            full_address_preformated = remove_some_words_and_format_text(
+                full_address, ["kjis552aCfd"])
+
+            formated_full_address = (
+                full_address_preformated.replace("st ", "saint ")
+                .replace("ste ", "sainte ")
+                .replace("-", " "))
+
+            location_title_preformated = remove_some_words_and_format_text(
+                location_title, ["kjis552aCfd"])
+
+            formated_location_title = (
+                location_title_preformated.replace("st ", "saint ")
+                .replace("ste ", "sainte ")
+                .replace("-", " "))
+
+            question = (
+                question.replace("st ", "saint ")
+                .replace("ste ", "sainte ")
+                .replace("%20", " "))
+
+            question = question.replace(f" de {city}", "").replace(f" à {city}", "")
+            question = question.replace(city, "") if city else question
+            question = question.strip()
+
+            all_words_of_question: List = question.split(" ")
+            for word in all_words_of_question:
+                if word not in formated_location_title:
+                    return None
+            if city:
+                if city in formated_full_address:
+                    return location_title
+                else:
+                    return None
             else:
-                return None
-        else:
-            return location_title
+                return location_title
+        except Exception as e:
+            logging.error(str(e))
+            return None
 
     @classmethod
     def get_geolocation(cls, question, city, message_from_papy):
@@ -266,6 +278,12 @@ class PapyBot:
         logging.debug(
             "question (extract_question_from_text(formated_text, STOP_WORDS)): "
             f"{question}")
+
+        if not question:
+
+            logging.debug(f"The question is not a real one!")
+            message_from_papy = "Merci de reformuler la question."
+            return message_from_papy, 400
 
         question, city = extract_city_from_question(question)
         logging.debug(

@@ -1,6 +1,8 @@
 # flask_app/logic/papybot.py
 # test of all  methods of class PapyBot except the << start >> method
 
+import logging
+
 from flask_app.logic import papybot
 
 
@@ -10,11 +12,15 @@ def test_check_response_validity_of_geoloc(monkeypatch):
     print("=> Check if the answer corresponds to the question")
     Sut = PapyBot  # class PapyBot
 
-    words_to_remove = ["nothing to remove"]
-    question_in_city_of_martinique = "clinique st paul de martinique"
+    words_to_remove = ["nothing to remove in this method"]
+    question_is_none = None
+    question_martinique_as_city_is_in_the_question = "clinique st paul de martinique"
     question_tortue_instead_of_paul = "clinique st tortue de martinique"
     location_title = "Clinique Saint-Paul, Fort de France"
+    location_title_is_none = None
+    location_title_is_not_string = {"message": "Not a string"}
     full_address = "Rue des Hibiscus<br/>97200, Fort-de-France<br/>Martinique"
+    full_address_is_none = None
     city_martinique = "martinique"
     city_lyon = "lyon"
     city_none = None
@@ -25,15 +31,32 @@ def test_check_response_validity_of_geoloc(monkeypatch):
 
     def mock_remove_some_words_and_format_text(
             text_to_format, words_to_remove):
+        if not(
+                words_to_remove
+                and words_to_remove == ["kjis552aCfd"]):
+            logging.error(
+                "The second arg is wrong in: remove_some_words_and_format_text()")
+            logging.error('words_to_remove must be exactly this list: ["kjis552aCfd"]')
+            raise Exception(
+                    "Error in the args of method: check_response_validity_of_geoloc")
+            
+        if not(
+                text_to_format
+                and isinstance(text_to_format, str)):
+            logging.error(
+                "The first arg is wrong in: remove_some_words_and_format_text()")
+            logging.error('text_to_format must be a non empty string')
+            return ""
+
         if text_to_format == location_title:
             return "clinique saint paul fort de france"
         if text_to_format == full_address:
             return "rue des hibiscusbr97200 fort de francebrmartinique"
-        elif text_to_format == location_title_eiffel_tower:
+        if text_to_format == location_title_eiffel_tower:
             return "eiffel tower tour eiffel"
-        elif text_to_format == full_address_eiffel_tower:
+        if text_to_format == full_address_eiffel_tower:
             return "5 avenue anatole francebr75007 paris"
-        return "error!"
+        return ""
 
     monkeypatch.setattr(
         papybot,
@@ -41,9 +64,34 @@ def test_check_response_validity_of_geoloc(monkeypatch):
         mock_remove_some_words_and_format_text)
 
     assert Sut.check_response_validity_of_geoloc(
-        question_in_city_of_martinique,
+        question_is_none,
+        location_title, full_address,
+        city_martinique) == None
+
+    assert Sut.check_response_validity_of_geoloc(
+        question_martinique_as_city_is_in_the_question,
         location_title, full_address,
         city_martinique) == location_title
+
+    assert Sut.check_response_validity_of_geoloc(
+        question_martinique_as_city_is_in_the_question,
+        location_title_is_none, full_address,
+        city_martinique) == None
+
+    assert Sut.check_response_validity_of_geoloc(
+        question_martinique_as_city_is_in_the_question,
+        location_title_is_none, full_address_is_none,
+        city_martinique) == None
+
+    assert Sut.check_response_validity_of_geoloc(
+        question_martinique_as_city_is_in_the_question,
+        location_title_is_none, full_address_is_none,
+        city_martinique) == None
+
+    assert Sut.check_response_validity_of_geoloc(
+        question_martinique_as_city_is_in_the_question,
+        location_title_is_not_string, full_address_is_none,
+        city_martinique) == None
 
     assert Sut.check_response_validity_of_geoloc(
         question_tortue_instead_of_paul,
@@ -54,14 +102,14 @@ def test_check_response_validity_of_geoloc(monkeypatch):
     # (so not in the variable city) and not in the address returned by the
     # geoloc API.
     assert Sut.check_response_validity_of_geoloc(
-        question_in_city_of_martinique,
+        question_martinique_as_city_is_in_the_question,
         location_title,
         full_address,
         city_none) == None
 
     # If the value of city is not in the address from the geoloc API
     assert Sut.check_response_validity_of_geoloc(
-        question_in_city_of_martinique,
+        question_martinique_as_city_is_in_the_question,
         location_title,
         full_address,
         city_lyon) == None
