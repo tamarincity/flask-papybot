@@ -14,4 +14,3 @@ omit =
     app_gunicorn.py
     env.py
     .env
-    zzz.py

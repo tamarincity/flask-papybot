@@ -1,6 +1,8 @@
 # PAPYBOT
 
 Ask PapyBot where a place is located, then he will answer you and give you more information.
+Do it only in french !
+e.g: Qu'elle est l'adresse d'Openclassrooms, s'il te plaît ? 
 
 ## Prerequisites
 
@@ -44,7 +46,7 @@ pipenv install -r requirements.txt
 ## Execute the application
 
 ```shell
-flask run
+python -m flask run
 ```
 
 
